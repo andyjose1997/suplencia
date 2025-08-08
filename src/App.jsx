@@ -298,6 +298,10 @@ const trocarTurno = (novoTurno) => {
         </button>
       </div>
       
+<a href="https://api.whatsapp.com/send/?phone=5511918547818&text=&type=phone_number&app_absent=0" target="_blank" id="andy">
+  Made by Andy De Oliveira
+</a>
+
     </div>
   );
 }

@@ -108,11 +108,85 @@ export default function FormularioPraticasB({ horario, fechar, salvar }) {
 
         <label>Sala</label>
         <input
-          type="text"
-          placeholder="Número ou nome da sala"
-          value={sala}
-          onChange={(e) => setSala(e.target.value)}
-        />
+  type="text"
+  list="lista-salas"
+  placeholder="Número ou nome da sala"
+  value={sala}
+  onChange={(e) => setSala(e.target.value)}
+/>
+
+<datalist id="lista-salas">
+  <option value="Verde" />
+  <option value="Academia" />
+  <option value="Vidro" />
+  <option value="Auditório" />
+  <option value="Estacionamento" />
+  <option value="Online" />
+  <option value="101" />
+  <option value="102" />
+  <option value="103" />
+  <option value="104" />
+  <option value="105" />
+  <option value="106" />
+  <option value="107" />
+  <option value="108" />
+  <option value="109" />
+  <option value="110" />
+  <option value="111" />
+  <option value="112" />
+  <option value="113" />
+  <option value="114" />
+  <option value="115" />
+  <option value="116" />
+  <option value="117" />
+  <option value="118" />
+  <option value="119" />
+  <option value="120" />
+  <option value="121" />
+  <option value="122" />
+  <option value="123" />
+  <option value="124" />
+  <option value="125" />
+  <option value="126" />
+  <option value="127" />
+  <option value="128" />
+  <option value="129" />
+  <option value="130" />
+  <option value="131" />
+  <option value="132" />
+  <option value="202" />
+  <option value="203" />
+  <option value="204" />
+  <option value="205" />
+  <option value="206" />
+  <option value="207" />
+  <option value="208" />
+  <option value="209" />
+  <option value="210" />
+  <option value="211" />
+  <option value="212" />
+  <option value="213" />
+  <option value="214" />
+  <option value="215" />
+  <option value="216" />
+  <option value="217" />
+  <option value="218" />
+  <option value="219" />
+  <option value="220" />
+  <option value="221" />
+  <option value="222" />
+  <option value="223" />
+  <option value="224" />
+  <option value="225" />
+  <option value="226" />
+  <option value="227" />
+  <option value="228" />
+  <option value="229" />
+  <option value="230" />
+  <option value="231" />
+  <option value="232" />
+</datalist>
+
 
         <label>Idioma</label>
         <section className="idiomas">

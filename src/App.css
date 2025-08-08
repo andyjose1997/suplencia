@@ -25,6 +25,34 @@
 
 
 }
+
+#andy {
+  top: 100px; /* você pode ajustar essa distância do topo */
+  background-color: #003cff9d;
+  color: rgb(231, 231, 231);
+  padding: 12px 20px;
+  border-radius: 8px 0 0 8px;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: 0px;
+  margin-left: 80%;
+  text-align: right;
+  width: 250px;
+    list-style: none;
+
+
+}
+
+#andy:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+
+
+
 .perfil-usuario {
   position: absolute;
   top: 20px;
