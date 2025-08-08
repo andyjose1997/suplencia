@@ -6,18 +6,20 @@ import "./praticas.css";
 import Cadastro from "../../cadastro";
 import ModalIdioma from "./ModalIdioma";
 
-
-export default function Praticas({ turno }) {
+export default function Praticas() {
   const [aba, setAba] = useState("praticas");
-
-  const [mostrarSelecaoLider, setMostrarSelecaoLider] = useState(false);
   const [instrutores, setInstrutores] = useState([]);
   const [liderAtual, setLiderAtual] = useState(null);
   const [nomeDigitado, setNomeDigitado] = useState("");
-const [idiomaSelecionado, setIdiomaSelecionado] = useState(null);
+  const [mostrarSelecaoLider, setMostrarSelecaoLider] = useState(false);
+  const [idiomaSelecionado, setIdiomaSelecionado] = useState(null);
+  const [mostrarCadastro, setMostrarCadastro] = useState(false);
+  const [instrutorLogado, setInstrutorLogado] = useState(null);
+  const [turnoAtual, setTurnoAtual] = useState("manha");
 
   const funcaoUsuario = localStorage.getItem("funcao");
 
+  // 🔄 Buscar lista de instrutores
   useEffect(() => {
     fetch("https://backend-suplencia.onrender.com/instrutores")
       .then(res => res.json())
@@ -25,6 +27,19 @@ const [idiomaSelecionado, setIdiomaSelecionado] = useState(null);
         setInstrutores(data);
         const lider = data.find(i => i.colina === 1);
         setLiderAtual(lider || null);
+      });
+  }, []);
+
+  // 🔄 Buscar turno atual
+  useEffect(() => {
+    fetch("https://backend-suplencia.onrender.com/turno-atual")
+      .then(res => res.json())
+      .then(data => {
+        setTurnoAtual(data.turno || "manha");
+        console.log("🕒 Turno atual:", data.turno);
+      })
+      .catch(err => {
+        console.error("❌ Erro ao buscar turno atual:", err);
       });
   }, []);
 
@@ -58,35 +73,32 @@ const [idiomaSelecionado, setIdiomaSelecionado] = useState(null);
   const trocarTurnoGlobal = (novoTurno) => {
     fetch("https://backend-suplencia.onrender.com/turno", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ novo_turno: novoTurno })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ novo_turno: novoTurno }),
     })
       .then(res => {
         if (!res.ok) throw new Error("Erro ao atualizar turno.");
+        setTurnoAtual(novoTurno); // ✅ atualiza local também
         console.log(`✅ Turno alterado para: ${novoTurno}`);
       })
       .catch(err => console.error("Erro ao trocar turno:", err));
   };
-const [mostrarCadastro, setMostrarCadastro] = useState(false);
-const [instrutorLogado, setInstrutorLogado] = useState(null);
-const apagarPraticasDoTurnoAtual = async () => {
-  try {
-    const res = await fetch(`https://backend-suplencia.onrender.com/turno-atual`);
-    const data = await res.json();
-    const turnoAtual = data.turno;
 
-    await fetch(`https://backend-suplencia.onrender.com/praticas/apagar-turno/${turnoAtual}`, {
-      method: "DELETE",
-    });
+  const apagarPraticasDoTurnoAtual = async () => {
+    try {
+      const res = await fetch(`https://backend-suplencia.onrender.com/turno-atual`);
+      const data = await res.json();
+      const turnoAtual = data.turno;
 
-    console.log(`🗑️ Práticas do turno '${turnoAtual}' apagadas com sucesso.`);
-  } catch (err) {
-    console.error("❌ Erro ao apagar práticas do turno atual:", err);
-  }
-};
+      await fetch(`https://backend-suplencia.onrender.com/praticas/apagar-turno/${turnoAtual}`, {
+        method: "DELETE",
+      });
 
+      console.log(`🗑️ Práticas do turno '${turnoAtual}' apagadas com sucesso.`);
+    } catch (err) {
+      console.error("❌ Erro ao apagar práticas do turno atual:", err);
+    }
+  };
 
   return (
     <div className="container-praticas">
@@ -103,25 +115,23 @@ const apagarPraticasDoTurnoAtual = async () => {
         >
           👥 Subs
         </button>
-       <button
-  className={aba === "informacoes" ? "btn-navegacao ativo" : "btn-navegacao"}
-  onClick={() => {
-    const nomeLogado = localStorage.getItem("instrutor");
-    const instrutor = instrutores.find(i => i.instrutor?.toLowerCase().trim() === nomeLogado?.toLowerCase().trim());
+        <button
+          className={aba === "informacoes" ? "btn-navegacao ativo" : "btn-navegacao"}
+          onClick={() => {
+            const nomeLogado = localStorage.getItem("instrutor");
+            const instrutor = instrutores.find(i => i.instrutor?.toLowerCase().trim() === nomeLogado?.toLowerCase().trim());
 
-    if (instrutor) {
-      setInstrutorLogado(instrutor);
-      setMostrarCadastro(true);
-      setAba("informacoes"); // <-- ESSENCIAL!
-    } else {
-      alert("Instrutor logado não encontrado.");
-    }
-  }}
->
-  📚 Informações
-</button>
-
-
+            if (instrutor) {
+              setInstrutorLogado(instrutor);
+              setMostrarCadastro(true);
+              setAba("informacoes");
+            } else {
+              alert("Instrutor logado não encontrado.");
+            }
+          }}
+        >
+          📚 Informações
+        </button>
       </div>
 
       {/* Área do Líder */}
@@ -131,7 +141,7 @@ const apagarPraticasDoTurnoAtual = async () => {
             <p>
               Encarregado das práticas: {liderAtual.instrutor}
               <button onClick={() => setMostrarSelecaoLider(true)}>Editar</button>
-              <button style={{display:"none"}} onClick={removerLider}>Apagar</button>
+              <button style={{ display: "none" }} onClick={removerLider}>Apagar</button>
             </p>
           ) : (
             <p>
@@ -176,71 +186,68 @@ const apagarPraticasDoTurnoAtual = async () => {
           <button onClick={() => { removerLider(); trocarTurnoGlobal("manha"); }}>Manhã</button>
           <button onClick={() => { removerLider(); trocarTurnoGlobal("tarde"); }}>Tarde</button>
           <button onClick={() => { removerLider(); trocarTurnoGlobal("noite"); }}>Noite</button>
-    <button className="botao-apagar" onClick={apagarPraticasDoTurnoAtual}>🗑️ Apagar práticas do turno atual</button>
-
+          <button className="botao-apagar" onClick={apagarPraticasDoTurnoAtual}>🗑️ Apagar práticas do turno atual</button>
         </div>
       )}
-      <br />
+
       {aba === "praticas" && (
+        <>
+          <h3 style={{
+            textAlign: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            color: "white",
+            padding: "10px 20px",
+            borderRadius: "8px",
+            width: "fit-content",
+            margin: "20px auto"
+          }}>
+            Subs disponíveis por idioma
+          </h3>
 
-<h3
-  style={{
-    textAlign: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.6)",
-    color: "white",
-    padding: "10px 20px",
-    borderRadius: "8px",
-    width: "fit-content",
-    margin: "20px auto"
-  }}
->
-  Subs disponíveis por idioma
-</h3>
-)}
-
-{aba === "praticas" && (
-  <div className="botoes-idiomas">
-    {["espanhol", "portugues", "ingles", "japones", "frances", "italiano"].map((idioma) => (
-      <button
-        key={idioma}
-        className="botao-idioma"
-        onClick={() => setIdiomaSelecionado(idioma)}
-      >
-        {idioma.toUpperCase()}
-      </button>
-    ))}
-  </div>
-)}
+          <div className="botoes-idiomas">
+            {["espanhol", "portugues", "ingles", "japones", "frances", "italiano"].map((idioma) => (
+              <button
+                key={idioma}
+                className="botao-idioma"
+                onClick={() => setIdiomaSelecionado(idioma)}
+              >
+                {idioma.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Conteúdo */}
       <div className="area-conteudo">
         {aba === "praticas" && (
           <>
-            <PraticasAturno turno={turno} />
-            <PraticasBturno turno={turno} />
+            <PraticasAturno turno={turnoAtual} />
+            <PraticasBturno turno={turnoAtual} />
           </>
         )}
+
         {aba === "subs" && <Subs />}
-{aba === "informacoes" && mostrarCadastro && instrutorLogado && (
-  <Cadastro
-    dadosInstrutor={instrutorLogado}
-    aoVoltar={() => {
-      setMostrarCadastro(false);
-      setInstrutorLogado(null);
-      setAba("praticas");
-    }}
-  />
-)}
 
-
+        {aba === "informacoes" && mostrarCadastro && instrutorLogado && (
+          <Cadastro
+            dadosInstrutor={instrutorLogado}
+            aoVoltar={() => {
+              setMostrarCadastro(false);
+              setInstrutorLogado(null);
+              setAba("praticas");
+            }}
+          />
+        )}
       </div>
-      {idiomaSelecionado && (
-  <ModalIdioma
-    idioma={idiomaSelecionado}
-    aoFechar={() => setIdiomaSelecionado(null)}
-  />
-)}
 
+      {/* Modal de idioma */}
+      {idiomaSelecionado && (
+        <ModalIdioma
+          idioma={idiomaSelecionado}
+          aoFechar={() => setIdiomaSelecionado(null)}
+        />
+      )}
     </div>
   );
 }
