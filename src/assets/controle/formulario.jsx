@@ -1,4 +1,4 @@
-import './Formulario.css';
+import './formulario.css';
 
 export default function Formulario({ dados, setDados, onSalvar, onCancelar }) {
   return (
