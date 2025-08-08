@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./formularioPraticas.css";
 
 export default function FormularioPraticas({ horario, fechar, salvar }) {
-  const [instrutor, setInstrutor] = useState("");
+  const [instrutor, setInstrutor] = useState(""); 
   const [link, setLink] = useState("");
   const [sala, setSala] = useState("");
   const [sub, setSub] = useState("");
