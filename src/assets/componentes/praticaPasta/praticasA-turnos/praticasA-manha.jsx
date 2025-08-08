@@ -32,39 +32,41 @@ export default function PraticasAmanha() {
   }, []);
 
   // Carrega dados do backend
-  useEffect(() => {
-    const carregarDados = async () => {
-      try {
-        const res = await fetch("https://backend-suplencia.onrender.com/praticas?turno=manha");
-        const data = await res.json();
-        const praticasFiltradas = data.filter(p => p.tipo === "A");
+ const carregarDados = async () => {
+  try {
+    const res = await fetch("https://backend-suplencia.onrender.com/praticas?turno=manha");
 
-        const novosPreenchidos = {};
-        const novasLinhas = horarios.map((hora) => {
-          const p = praticasFiltradas.find(p => p.id === `A-${hora}`);
-          if (p?.instrutor_A) {
-            novosPreenchidos[`A-${hora}`] = p.instrutor_A;
-          }
-          return {
-            instrutor: p?.instrutor_A || "",
-            link: p?.link_A || "",
-            sala: p?.sala_A || "",
-            idioma: p?.idioma_A || "",
-            sub: p?.subs_A || ""
-          };
-        });
+    if (!res.ok) {
+      const textoErro = await res.text();
+      console.error("❌ Erro HTTP:", res.status, textoErro);
+      return;
+    }
 
-        setLinhas(novasLinhas);
-        setPreenchidoPor(novosPreenchidos);
-      } catch (err) {
-        console.error("Erro ao carregar práticas:", err);
+    const data = await res.json();
+    const praticasFiltradas = data.filter(p => p.tipo === "A");
+
+    const novosPreenchidos = {};
+    const novasLinhas = horarios.map((hora) => {
+      const p = praticasFiltradas.find(p => p.id === `A-${hora}`);
+      if (p?.instrutor_A) {
+        novosPreenchidos[`A-${hora}`] = p.instrutor_A;
       }
-    };
+      return {
+        instrutor: p?.instrutor_A || "",
+        link: p?.link_A || "",
+        sala: p?.sala_A || "",
+        idioma: p?.idioma_A || "",
+        sub: p?.subs_A || ""
+      };
+    });
 
-    carregarDados();
-    const intervalo = setInterval(carregarDados, 10000);
-    return () => clearInterval(intervalo);
-  }, []);
+    setLinhas(novasLinhas);
+    setPreenchidoPor(novosPreenchidos);
+  } catch (err) {
+    console.error("❌ Erro ao carregar práticas:", err);
+  }
+};
+
 
   const abrirFormulario = (index) => {
     const hora = horarios[index];
