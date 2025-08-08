@@ -22,7 +22,7 @@ export default function BuscarEscritura() {
 
   const traducoes = {
     por: "Por favor, coloque a inicial do seu idioma nativo no início do seu nome missionário. Por exemplo: P Élder Silva.",
-    eng: "Please place the initial of your native language at the beginning of your missionary name. For example: E Elder Johnson.",
+    eng: "Please place the initial of your native language at the beginning of your missionary name. For example: I Elder Johnson.",
     spa: "Por favor, coloque la inicial de su idioma nativo al comienzo de su nombre misionero. Por ejemplo: E Élder García.",
     fra: "Veuillez ajouter l’initiale de votre langue maternelle au début de votre nom missionnaire. Par exemple : F Elder Dubois.",
     ita: "Per favore, metti l'iniziale della tua lingua madre all'inizio del tuo nome missionario. Ad esempio: I Anziano Rossi.",
