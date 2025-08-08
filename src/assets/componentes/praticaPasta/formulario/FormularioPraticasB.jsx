@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./formularioPraticas.css";
+import "./formularioPraticas.css"; 
 
 export default function FormularioPraticasB({ horario, fechar, salvar }) {
   const [instrutor, setInstrutor] = useState("");
@@ -100,7 +100,7 @@ export default function FormularioPraticasB({ horario, fechar, salvar }) {
           ⏳ Tempo restante: {tempoRestante}s
         </p>
 
-        <label>Instrutor(a)</label>
+        <label>Instrutor(a):</label>
         <p className="campo-texto">{instrutor || "—"}</p>
 
         <label>Link</label>
