@@ -20,53 +20,59 @@ export default function PraticasAmanha() {
   const [preenchidoPor, setPreenchidoPor] = useState({});
   const [usuarioAtual, setUsuarioAtual] = useState("");
   const [permissoes, setPermissoes] = useState({ funcao: "", colina: 0 });
+  const [carregando, setCarregando] = useState(true); // ✅ novo estado
 
   // Pega o usuário logado e permissões
   useEffect(() => {
     const instrutor = localStorage.getItem("instrutor")?.trim() || "";
     const funcao = localStorage.getItem("funcao") || "";
     const colina = parseInt(localStorage.getItem("colina") || "0");
-
     setUsuarioAtual(instrutor);
     setPermissoes({ funcao, colina });
   }, []);
 
   // Carrega dados do backend
- const carregarDados = async () => {
-  try {
-    const res = await fetch("https://backend-suplencia.onrender.com/praticas?turno=manha");
+  useEffect(() => {
+    const carregarDados = async () => {
+      try {
+        const res = await fetch("https://backend-suplencia.onrender.com/praticas?turno=manha");
+        if (!res.ok) {
+          const textoErro = await res.text();
+          console.error("❌ Erro HTTP:", res.status, textoErro);
+          return;
+        }
 
-    if (!res.ok) {
-      const textoErro = await res.text();
-      console.error("❌ Erro HTTP:", res.status, textoErro);
-      return;
-    }
+        const data = await res.json();
+        const praticasFiltradas = data.filter(p => p.tipo?.toUpperCase() === "A");
 
-    const data = await res.json();
-    const praticasFiltradas = data.filter(p => p.tipo === "A");
+        const novosPreenchidos = {};
+        const novasLinhas = horarios.map((hora) => {
+          const p = praticasFiltradas.find(p => p.id === `A-${hora}`);
+          if (p?.instrutor_A) {
+            novosPreenchidos[`A-${hora}`] = p.instrutor_A;
+          }
+          return {
+            instrutor: p?.instrutor_A || "",
+            link: p?.link_A || "",
+            sala: p?.sala_A || "",
+            idioma: p?.idioma_A || "",
+            sub: p?.subs_A || ""
+          };
+        });
 
-    const novosPreenchidos = {};
-    const novasLinhas = horarios.map((hora) => {
-      const p = praticasFiltradas.find(p => p.id === `A-${hora}`);
-      if (p?.instrutor_A) {
-        novosPreenchidos[`A-${hora}`] = p.instrutor_A;
+        setLinhas(novasLinhas);
+        setPreenchidoPor(novosPreenchidos);
+      } catch (err) {
+        console.error("❌ Erro ao carregar práticas:", err);
+      } finally {
+        setCarregando(false); // ✅ finaliza carregamento
       }
-      return {
-        instrutor: p?.instrutor_A || "",
-        link: p?.link_A || "",
-        sala: p?.sala_A || "",
-        idioma: p?.idioma_A || "",
-        sub: p?.subs_A || ""
-      };
-    });
+    };
 
-    setLinhas(novasLinhas);
-    setPreenchidoPor(novosPreenchidos);
-  } catch (err) {
-    console.error("❌ Erro ao carregar práticas:", err);
-  }
-};
-
+    carregarDados();
+    const intervalo = setInterval(carregarDados, 10000);
+    return () => clearInterval(intervalo);
+  }, []);
 
   const abrirFormulario = (index) => {
     const hora = horarios[index];
@@ -75,12 +81,10 @@ export default function PraticasAmanha() {
 
     const podeAbrir =
       !bloqueiosTemporarios[id] &&
-      (
-        !preenchido ||
+      (!preenchido ||
         preenchido === usuarioAtual ||
         permissoes.funcao === "admin" ||
-        permissoes.colina === 1
-      );
+        permissoes.colina === 1);
 
     if (!podeAbrir) return;
 
@@ -91,7 +95,6 @@ export default function PraticasAmanha() {
       [id]: true
     }));
 
-    // Libera após 40s caso não salve
     setTimeout(() => {
       setBloqueiosTemporarios((prev) => {
         const novo = { ...prev };
@@ -144,12 +147,10 @@ export default function PraticasAmanha() {
         return res.json();
       })
       .then(() => {
-        // Atualiza preenchido
         setPreenchidoPor((prev) => ({
           ...prev,
           [id]: dados.instrutor
         }));
-        // Libera o botão
         setBloqueiosTemporarios((prev) => {
           const novo = { ...prev };
           delete novo[id];
@@ -164,60 +165,66 @@ export default function PraticasAmanha() {
   return (
     <div className="tabela-container">
       <h3>Práticas A - Manhã</h3>
-      <table className="tabela-praticas">
-        <thead>
-          <tr>
-            <th>Instrutor(a)</th>
-            <th>Link</th>
-            <th>Sala</th>
-            <th>Horário</th>
-            <th>Idioma</th>
-            <th>SUBS</th>
-          </tr>
-        </thead>
-        <tbody>
-          {horarios.map((hora, index) => {
-            const id = `A-${hora}`;
-            const preenchido = preenchidoPor[id];
 
-            const bloqueado =
-  bloqueiosTemporarios[id] &&
-  preenchido !== usuarioAtual &&
-  !(permissoes.funcao === "admin" || permissoes.colina === 1);
-
-
-            return (
-              <tr key={index}>
-                <td>{linhas[index].instrutor}</td>
-                <td>
-                  {linhas[index].link ? (
-                    <a href={linhas[index].link} target="_blank" rel="noopener noreferrer">link</a>
-                  ) : ""}
-                </td>
-                <td>{linhas[index].sala}</td>
-                <td>
-                  <button
-                    className="btn-horario"
-                    onClick={() => abrirFormulario(index)}
-                    disabled={bloqueado}
-                  >
-                    {hora}
-                  </button>
-                </td>
-                <td>{linhas[index].idioma}</td>
-                <td>{linhas[index].sub}</td>
+      {carregando ? (
+        <p style={{ textAlign: "center", marginTop: "2rem" }}>⏳ Carregando tabela de práticas...</p>
+      ) : (
+        <>
+          <table className="tabela-praticas">
+            <thead>
+              <tr>
+                <th>Instrutor(a)</th>
+                <th>Link</th>
+                <th>Sala</th>
+                <th>Horário</th>
+                <th>Idioma</th>
+                <th>SUBS</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              {horarios.map((hora, index) => {
+                const id = `A-${hora}`;
+                const preenchido = preenchidoPor[id];
 
-      {formularioAberto !== null && (
-        <FormularioPraticas
-          horario={horarios[formularioAberto]}
-          fechar={() => setFormularioAberto(null)}
-          salvar={(dados) => salvarLinha(formularioAberto, dados)}
-        />
+                const bloqueado =
+                  bloqueiosTemporarios[id] &&
+                  preenchido !== usuarioAtual &&
+                  !(permissoes.funcao === "admin" || permissoes.colina === 1);
+
+                return (
+                  <tr key={index}>
+                    <td>{linhas[index].instrutor}</td>
+                    <td>
+                      {linhas[index].link ? (
+                        <a href={linhas[index].link} target="_blank" rel="noopener noreferrer">link</a>
+                      ) : ""}
+                    </td>
+                    <td>{linhas[index].sala}</td>
+                    <td>
+                      <button
+                        className="btn-horario"
+                        onClick={() => abrirFormulario(index)}
+                        disabled={bloqueado}
+                      >
+                        {hora}
+                      </button>
+                    </td>
+                    <td>{linhas[index].idioma}</td>
+                    <td>{linhas[index].sub}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+
+          {formularioAberto !== null && (
+            <FormularioPraticas
+              horario={horarios[formularioAberto]}
+              fechar={() => setFormularioAberto(null)}
+              salvar={(dados) => salvarLinha(formularioAberto, dados)}
+            />
+          )}
+        </>
       )}
     </div>
   );
