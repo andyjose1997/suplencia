@@ -1,0 +1,91 @@
+.subs-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.sugestoes-lista {
+  background: #f4f4f4;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  color: #4caf50;
+}
+
+.sugestoes-lista li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugestoes-lista li:hover {
+  background-color: #e0f7e0;
+}
+
+.tabela-subs {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-subs th,
+.tabela-subs td {
+  border: 1px solid #b3deb3;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.tabela-subs th {
+  background-color: #006203;
+  color: white;
+}
+
+.tabela-subs tr:nth-child(even) {
+  background-color: #00076f;
+}
+.tabela-subs tr:nth-child(odd) {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+
+.tabela-subs button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tabela-subs button:hover {
+  background-color: #e60000;
+}
+.tabela-subs select {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.subs-container h2 {
+  color: #006203;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.tabela-subs tr {
+  transition: background-color 0.3s ease;
+}
+
+.tabela-subs tr:hover {
+  background-color: #00411d;
+  color: #e0f7e0;
+}

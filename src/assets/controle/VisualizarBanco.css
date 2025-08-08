@@ -1,0 +1,256 @@
+.visualizador-container {
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.visualizador-container h2 {
+  color: #fcfcfd;
+  background-color: #050379f8;
+  width: 400px;
+  border: #00137e solid 2px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.filtro-container {
+  margin: 10px 0;
+  text-align: right;
+}
+
+.input-filtro {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 250px;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.paginacao button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #0077cc;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.paginacao button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+.seletor-tabela {
+  margin-bottom: 1rem;
+}
+.anuncios-container {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #1e1e1e;
+  border: 1px solid #444;
+  border-radius: 8px;
+}
+
+.input-anuncio {
+  padding: 8px;
+  width: 70%;
+  margin-right: 10px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background: #333;
+  color: white;
+}
+
+.btn-enviar-anuncio {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.lista-anuncios {
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+  color: white;
+}
+.botoes-anuncio {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.botoes-anuncio button {
+  margin-left: 6px;
+  font-size: 12px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background-color: #ffc107;
+  color: black;
+}
+
+.btn-apagar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-cancelar-edicao {
+  margin-left: 10px;
+  background-color: #6c757d;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.botoes-anuncio button {
+  margin-left: 6px;
+  padding: 4px 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.suplente-box {
+  background: #1e1e1e;
+  padding: 15px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid #444;
+}
+
+.suplente-box button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #2e8b57;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.info-suplente {
+  margin-top: 15px;
+  background-color: #2a2a2a;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.btn-apagar {
+  background-color: #b22222;
+  margin-top: 10px;
+}
+
+.botoes-anuncio button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.lista-anuncios li {
+  padding: 6px;
+  border-bottom: 1px solid #444;
+}
+
+.seletor-tabela select {
+  margin-left: 10px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.tabela-dados {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-dados th {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.tabela-dados td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabela-dados tr:hover {
+  background-color: #f2f2f2;
+  color: #2c3e50;
+}
+.btn-editar,
+.btn-apagar {
+  padding: 5px 10px;
+  margin-right: 6px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-editar {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.btn-apagar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-editar:hover {
+  background-color: #e0a800;
+}
+
+.btn-apagar:hover {
+  background-color: #c82333;
+}
+
+.erro-msg {
+  color: red;
+  margin-top: 10px;
+}
+
+.carregando-msg {
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.aviso-vazio {
+  margin-top: 10px;
+  font-style: italic;
+  color: #888;
+}
+/* Estilo alternado: azul e verde */
+.tabela-dados tbody tr:nth-child(odd) {
+  background-color: #00137e; /* azul claro */
+}
+
+.tabela-dados tbody tr:nth-child(even) {
+  background-color: #008400; /* verde claro */
+}
+
+.tabela-dados tr:hover {
+  background-color: #d0ebff !important; /* destaque ao passar o mouse */
+}

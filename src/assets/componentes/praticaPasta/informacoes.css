@@ -1,0 +1,107 @@
+.info-container {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 20px auto;
+}
+
+.info-titulo {
+  font-size: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #333;
+}
+
+.info-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.info-tabela th {
+  background-color: #f4f6f8;
+  color: #333;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.info-tabela td {
+  padding: 12px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  font-size: 14px;
+  color: #444;
+}
+
+.info-link {
+  color: #3366cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.info-link:hover {
+  text-decoration: underline;
+}
+
+.info-input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 90%;
+  font-size: 14px;
+}
+
+.info-checkbox {
+  transform: scale(1.3);
+  cursor: pointer;
+}
+
+.info-btn {
+  border: none;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-btn:hover {
+  opacity: 0.9;
+}
+
+.info-editar {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.info-salvar {
+  background-color: #5cb85c;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .info-tabela th,
+  .info-tabela td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .info-container {
+    padding: 16px;
+  }
+}

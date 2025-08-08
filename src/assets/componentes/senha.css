@@ -1,0 +1,45 @@
+.senha-container {
+  max-width: 400px;
+  margin: 40px auto;
+  background-color: #ffffff3f;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.senha-container h2 {
+  margin-bottom: 24px;
+  color: #2c3e50;
+}
+
+.senha-container input {
+  width: 80%;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.senha-container input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.senha-container button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.senha-container button:hover {
+  background-color: #0056b3;
+}

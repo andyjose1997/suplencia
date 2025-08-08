@@ -1,0 +1,216 @@
+.formulario-impressoes {
+  max-width: 680px;
+  margin: 40px auto;
+  background-color: #f9fafc;
+  padding: 36px 32px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  color: #333;
+}
+
+.formulario-impressoes h2 {
+  text-align: center;
+  color: #1e293b;
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+
+.formulario-impressoes label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #334155;
+  font-size: 15px;
+}
+
+.formulario-impressoes input[type="text"],
+.formulario-impressoes input[list],
+.formulario-impressoes select,
+.formulario-impressoes textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-top: 6px;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-family: inherit;
+}
+
+.formulario-impressoes input:focus,
+.formulario-impressoes textarea:focus,
+.formulario-impressoes select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.formulario-impressoes textarea {
+  resize: none;
+  height: 32px;
+  line-height: 1.4;
+}
+
+.formulario-impressoes div {
+  display: flex;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.formulario-impressoes input[type="radio"] {
+  margin-right: 6px;
+}
+
+.formulario-impressoes button {
+  width: 100%;
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 15px;
+  border-radius: 14px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.formulario-impressoes button:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+}
+
+.tabela-impressoes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.tabela-impressoes th,
+.tabela-impressoes td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.tabela-impressoes th {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.tabela-impressoes tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+.tabela-impressoes tr:hover {
+  background-color: #eef2f7;
+}
+
+@media (max-width: 600px) {
+  .formulario-impressoes {
+    padding: 24px 20px;
+  }
+
+  .formulario-impressoes div {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.linha-faltou {
+  background-color: #ff0000 !important;
+  font-weight: bolder;
+}
+.linha-entregue {
+  background-color: #06fc48 !important;
+  font-weight: bolder;
+  text-decoration: line-through;
+
+
+}
+
+/* === Estilo do Encarregado de Impressão === */
+
+.area-encarregado {
+  margin-top: 30px;
+}
+
+.area-encarregado h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.cartao-encarregado {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8f9fa;
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 12px;
+}
+
+.cartao-encarregado img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.cartao-encarregado strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.botao-editar-encarregado {
+  margin-left: auto;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.botao-editar-encarregado:hover {
+  background-color: #555;
+}
+
+.selecao-encarregado {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.selecao-encarregado input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+}
+
+.selecao-encarregado button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.selecao-encarregado button:hover {
+  background-color: #0056b3;
+}

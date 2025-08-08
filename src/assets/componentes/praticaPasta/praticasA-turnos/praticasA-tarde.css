@@ -1,0 +1,72 @@
+.tabela-container {
+  margin-top: 32px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.tabela-container h3 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid #e4e4e4;
+  padding-bottom: 10px;
+}
+
+.tabela-praticas {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.tabela-praticas th {
+  background-color: #1e90ff;
+  color: white;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabela-praticas th:last-child {
+  border-right: none;
+}
+
+.tabela-praticas td {
+  padding: 12px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tabela-praticas tr:nth-child(even) {
+  background-color: #f8f9fb;
+}
+
+.tabela-praticas tr:hover td {
+  background-color: #f0f4ff;
+}
+
+.btn-horario {
+  padding: 8px 14px;
+  background-color: #007bff;
+  color: white;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-horario:hover {
+  background-color: #0056b3;
+  transform: scale(1.03);
+}

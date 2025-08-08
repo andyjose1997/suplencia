@@ -1,0 +1,53 @@
+/* Container geral da tabela de Práticas B */
+.tabela-turno-b {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  color: #064d06;
+  background-color: #f0fff4;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 128, 0, 0.15);
+}
+
+/* Tabela */
+.tabela-praticas-b {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tabela-praticas-b th,
+.tabela-praticas-b td {
+  border: 1px solid #90ee90;
+  padding: 10px;
+  text-align: center;
+}
+
+.tabela-praticas-b th {
+  background-color: #bdfcc9;
+  color: #064d06;
+  font-weight: 600;
+}
+
+.tabela-praticas-b td {
+  background-color: #ffffff;
+  color: #064d06;
+}
+
+/* Botão verde de horário */
+.btn-horario-b {
+  background-color: #32cd32;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.btn-horario-b:hover {
+  background-color: #228b22;
+}
+.tabela-turno-b {
+  border-left: 6px solid #32cd32;
+}

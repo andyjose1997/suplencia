@@ -1,0 +1,76 @@
+/* enc.css */
+
+.encarregado-container {
+  background: #f4f6f8;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 100%;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.encarregado-topo {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.encarregado-container h3 {
+  font-size: 18px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.encarregado-container h3::before {
+  content: "📄";
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.encarregado-container p {
+  margin: 0;
+  font-weight: bold;
+  font-size: 17px;
+  color: #222;
+}
+
+.encarregado-controle {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.encarregado-controle input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  min-width: 200px;
+  transition: 0.2s;
+}
+
+.encarregado-controle input:focus {
+  border-color: #007bff;
+  outline: none;
+  background: #fff;
+}
+
+.encarregado-controle button {
+  background-color: #2d7efb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.encarregado-controle button:hover {
+  background-color: #1e63d8;
+}

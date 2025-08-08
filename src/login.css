@@ -1,0 +1,111 @@
+/* login.css — com classes exclusivas para o componente Login */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+  background: url('/imagens/logos/ctm_login.JPG') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.login-form-box {
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(0, 40, 92, 0.582);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.login-form-box h1,
+.login-form-box h2 {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  z-index: 1;
+}
+
+.login-form-box form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-input {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #1b005a;
+  color: aliceblue;
+  transition: all 0.3s ease;
+  width: 320px;
+}
+
+.login-input:focus {
+  outline: none;
+  background-color: #e0e0e0;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  color: black;
+}
+
+.login-button {
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.login-criar-conta-btn {
+  margin-top: 1rem;
+  background-color: #28a745;
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px;
+}
+
+.login-criar-conta-btn:hover {
+  background-color: #218838;
+}
+
+.login-mensagem {
+  margin-top: 1rem;
+  text-align: center;
+  z-index: 1;
+  color: red;
+}

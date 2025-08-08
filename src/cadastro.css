@@ -1,0 +1,154 @@
+/* RESET */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container com imagem de fundo e altura 70% */
+.cadastro-container {
+  background: url('/imagens/logos/cadastro.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cadastro-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+  z-index: 0;
+}
+
+/* Formulário central */
+.cadastro-form {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 1.2rem;
+  width: 90%;
+  max-width: 380px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Título reduzido */
+.cadastro-titulo {
+  text-align: center;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Inputs menores */
+.cadastro-input {
+  padding: 0.55rem;
+  margin-bottom: 0.6rem;
+  border: none;
+  width: 200px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: 0.3s ease;
+}
+
+.cadastro-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px #007bff55;
+}
+
+/* Botões menores */
+.cadastro-btn {
+  padding: 0.6rem;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.cadastro-btn.primario {
+  background-color: #007bff;
+  color: white;
+}
+
+.cadastro-btn.primario:hover {
+  background-color: #0056b3;
+}
+
+.cadastro-btn.secundario {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cadastro-btn.secundario:hover {
+  background-color: #5a6268;
+}
+
+/* Mensagem */
+.cadastro-mensagem {
+  margin-top: 0.6rem;
+  text-align: center;
+  color: #ff4d4d;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* Idiomas */
+.cadastro-idiomas-box {
+  margin-bottom: 0.8rem;
+}
+
+.cadastro-idiomas-label {
+  color: #fff;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.cadastro-idiomas-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cadastro-idioma-opcao {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cadastro-idioma-opcao:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.cadastro-idioma-opcao input[type="checkbox"] {
+  transform: scale(1);
+  accent-color: #00bfff;
+}

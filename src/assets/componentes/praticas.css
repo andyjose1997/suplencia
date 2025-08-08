@@ -1,0 +1,163 @@
+.container-praticas {
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  max-width: 1100px;
+  margin: 0 auto;
+  color: #e0e0e0;
+  border-radius: 20px;
+}
+
+/* Aba de navegação superior */
+.botoes-selecao {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-navegacao {
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  background-color: #1f1f1f;
+  color: #a0c4ff;
+  border: 1px solid #2a2a2a;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-navegacao:hover {
+  background-color: #333333;
+}
+
+.btn-navegacao.ativo {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+}
+
+/* Botões de turno (manhã, tarde, noite) */
+.botoes-turnos {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.botoes-turnos button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  background-color: #1a1a2e;
+  color: #4da6ff;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  min-width: 100px;
+}
+
+.botoes-turnos button:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+/* Área onde ficam os componentes renderizados */
+.area-conteudo {
+  margin-top: 1rem;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .btn-navegacao,
+  .botoes-turnos button {
+    width: 100%;
+    text-align: center;
+  }
+}
+.area-lider {
+  background-color: #f5f7fba1;
+  border: 1px solid #d1d9e6;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+  color: #1a1a2e;
+}
+.botoes-idiomas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+.botao-idioma {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.botao-idioma:hover {
+  background-color: #0056b3;
+}
+
+.area-lider p {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.area-lider button {
+  margin: 0 6px;
+  padding: 6px 14px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.area-lider button:hover {
+  background-color: #3753d8;
+}
+
+.selecao-lider {
+  margin-top: 12px;
+}
+
+.selecao-lider input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 60%;
+  max-width: 280px;
+  margin-bottom: 10px;
+}
+
+.selecao-lider button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.selecao-lider button:hover {
+  background-color: #1e7e34;
+}
