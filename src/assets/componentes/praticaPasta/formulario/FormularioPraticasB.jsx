@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./formularioPraticas.css"; 
+import "./formularioPratica.css"; 
 
 export default function FormularioPraticasB({ horario, fechar, salvar }) {
   const [instrutor, setInstrutor] = useState("");
