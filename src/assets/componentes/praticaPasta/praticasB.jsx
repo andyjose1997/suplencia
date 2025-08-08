@@ -1,7 +1,8 @@
-import PraticasBmanha from './praticasB-turnos/praticasB-manha';
-import PraticasBtarde from './praticasB-turnos/praticasB-tarde';
-import PraticasBnoite from './praticasB-turnos/praticasB-noite';
-import './praticasB.css'
+import PraticasBmanha from './praticasB-turnos/praticasB-manha.jsx';
+import PraticasBtarde from './praticasB-turnos/praticasB-tarde.jsx';
+import PraticasBnoite from './praticasB-turnos/praticasB-noite.jsx';
+import './praticasB.css';
+
 
 export default function PraticasBturno({ turno }) {
   return (
