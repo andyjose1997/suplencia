@@ -1,0 +1,149 @@
+.rep-wrap {
+  max-width: 920px;
+  margin: 24px auto;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.rep-titulo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  margin: 0 0 4px 0;
+}
+
+.rep-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  backdrop-filter: blur(4px);
+}
+
+.rep-subtitulo {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.rep-topo {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.rep-datalist-bloco {
+  display: grid;
+  gap: 6px;
+  min-width: 260px;
+}
+
+.rep-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.rep-input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.18);
+  outline: none;
+  background: rgba(255,255,255,0.06);
+  color: inherit;
+}
+
+.rep-status,
+.rep-erro,
+.rep-vazio {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+}
+
+.rep-erro { border: 1px solid #ff6b6b44; }
+
+.rep-tabela-container {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.rep-tabela {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rep-tabela th,
+.rep-tabela td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: left;
+}
+
+.rep-tabela thead th {
+  background: rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+}
+
+.rep-links {
+  display: grid;
+  gap: 10px;
+}
+
+.rep-link-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.rep-btn, .rep-mini {
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.04s ease, background 0.2s ease;
+}
+
+.rep-mini { padding: 6px 10px; font-size: 0.9rem; }
+
+.rep-btn:hover, .rep-mini:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.1);
+}
+
+.rep-dbgrid {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.rep-dbitem {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  border: 1px dashed rgba(255,255,255,0.12);
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.rep-k { opacity: 0.85; font-weight: 600; }
+.rep-v { word-break: break-all; }
+.rep-pass { filter: blur(2px); transition: filter 0.2s ease; }
+.rep-pass:hover { filter: blur(0); }
+
+.rep-alerta {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}

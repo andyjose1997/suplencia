@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import './VisualizarBanco.css';
+import './visualizarBanco.css';
 import Formulario from "./formulario";
-
+import Repositorios from "./repositorios";
 export default function VisualizarBanco() {
   const [tabelas, setTabelas] = useState([]);
   const [dadosTabela, setDadosTabela] = useState([]);
@@ -16,6 +16,7 @@ const [anuncios, setAnuncios] = useState([]);
 const [anuncioEditando, setAnuncioEditando] = useState(null);
 const [textoEditado, setTextoEditado] = useState("");
 const [suplenteAtual, setSuplenteAtual] = useState(null);
+const [isSupervisor, setIsSupervisor] = useState(false);
 
 
 useEffect(() => {
@@ -55,6 +56,41 @@ async function carregarAnuncios() {
 }
 
   const itensPorPagina = 20;
+
+
+  useEffect(() => {
+  verificarSupervisor();
+}, []);
+
+async function verificarSupervisor() {
+  try {
+    const instrutor = localStorage.getItem("instrutor");
+    if (!instrutor) return;
+
+    const token = localStorage.getItem("token");
+    const res = await fetch(`https://backend-suplencia.onrender.com/instrutores`, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    if (!res.ok) throw new Error("Erro ao buscar instrutores");
+
+    const lista = await res.json();
+    const usuario = lista.find(
+      (i) => String(i.instrutor).toLowerCase() === instrutor.toLowerCase()
+    );
+
+    if (usuario) {
+  const sup = String(usuario.supervisor || "").toLowerCase().trim();
+  if (["1", "sim", "true", "supervisor"].includes(sup)) {
+    setIsSupervisor(true);
+  }
+}
+
+
+  } catch (err) {
+    console.error("Erro ao verificar supervisor:", err);
+  }
+}
 
   useEffect(() => {
     async function buscarTabelas() {
@@ -129,9 +165,10 @@ async function removerSuplente() {
     setErro("");
     try {
       const token = localStorage.getItem("token");
-      const resposta = await fetch(`https://backend-suplencia.onrender.com/visualizar_tabela/${nome}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const resposta = await fetch(`https://backend-suplencia.onrender.com/visualizar_tabela/${encodeURIComponent(nome)}`, {
+  headers: { Authorization: `Bearer ${token}` }
+});
+
 
       if (!resposta.ok) throw new Error("Erro ao buscar dados da tabela");
 
@@ -348,7 +385,7 @@ async function removerSuplente() {
       <h2 >🔎 Visualizar Banco de Dados</h2>
       {erro && <p className="erro-msg">{erro}</p>}
 
-      <div style={{ visibility: "hidden" }} className="seletor-tabela">
+<div style={{ display: "none" }} className="seletor-tabela">
         <label>Selecione uma tabela:</label>
         <select
           value={tabelaSelecionada}
@@ -389,35 +426,59 @@ async function removerSuplente() {
             <tr>
               {Object.keys(dadosPaginados[0])
                 .filter(
-                  (coluna) =>
-                    coluna !== "id" &&
-                    !["espanhol", "portugues", "ingles", "frances", "japones", "italiano", "colina", "foto", "turno", "turno_global", "coluna_impressao", "ate", "sub"].includes(coluna)
-                )
-                .map((coluna, idx) => (
-                  <th key={idx}>{coluna === "senha" ? "🔒 Senha" : coluna}</th>
-                ))}
+  (coluna) =>
+    coluna !== "id" &&
+    !["espanhol","portugues","ingles","frances","japones","italiano","colina","foto","turno","turno_global","coluna_impressao","ate","sub"].includes(coluna)
+)
+.map((coluna, idx) => (
+  <th key={idx}>{coluna}</th>
+))
+}
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {dadosPaginados.map((linha, i) => (
-              <tr key={i}>
-                {Object.entries(linha)
-                  .filter(
-                    ([coluna]) =>
-                      coluna !== "id" &&
-                      !["espanhol", "portugues", "ingles", "frances", "japones", "italiano", "colina", "foto", "turno", "turno_global", "coluna_impressao", "ate", "sub"].includes(coluna)
-                  )
-                  .map(([coluna, valor], j) => (
-                    <td key={j}>{coluna === "senha" ? <code>{valor}</code> : String(valor)}</td>
-                  ))}
-                <td>
-                  <button onClick={() => editarLinha(linha)} className="btn-editar">Editar</button>
-                  <button onClick={() => apagarLinha(linha)} className="btn-apagar">Apagar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+  {dadosPaginados.map((linha, i) => (
+    <tr key={i}>
+      {Object.entries(linha)
+        .filter(
+          ([coluna]) =>
+            coluna !== "id" &&
+            ![
+              "espanhol", "portugues", "ingles", "frances", "japones", "italiano",
+              "colina", "foto", "turno", "turno_global", "coluna_impressao", "ate", "sub"
+            ].includes(coluna)
+        )
+        .map(([coluna, valor], j) => {
+  if (coluna === "senha") {
+    // Condição atual: se não é supervisor e a linha é de supervisor => mostrar "oculta"
+    if (
+      !isSupervisor &&
+      String(linha.supervisor || "").toLowerCase().trim() === "supervisor"
+    ) {
+      return <td key={j}>oculta</td>;
+    }
+
+    // Caso contrário, mostrar senha com efeito de ocultar/revelar
+    return (
+      <td key={j} className="senha-ofuscada">
+        {String(valor)}
+      </td>
+    );
+  }
+
+  // Colunas normais
+  return <td key={j}>{String(valor)}</td>;
+})
+}
+      <td>
+        <button onClick={() => editarLinha(linha)} className="btn-editar">Editar</button>
+        <button onClick={() => apagarLinha(linha)} className="btn-apagar">Apagar</button>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
         </table>
       )}
 
@@ -444,7 +505,11 @@ async function removerSuplente() {
           onSalvar={salvarEdicao}
           onCancelar={() => setLinhaEditando(null)}
         />
+
+
       )}
+{isSupervisor && <Repositorios />}
+
     </div>
   );
 }
