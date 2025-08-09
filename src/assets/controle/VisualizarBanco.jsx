@@ -450,27 +450,27 @@ async function removerSuplente() {
             ].includes(coluna)
         )
         .map(([coluna, valor], j) => {
-  if (coluna === "senha") {
-    // Condição atual: se não é supervisor e a linha é de supervisor => mostrar "oculta"
-    if (
-      !isSupervisor &&
-      String(linha.supervisor || "").toLowerCase().trim() === "supervisor"
-    ) {
-      return <td key={j}>oculta</td>;
-    }
+          // Se for a coluna senha e não sou supervisor e a linha é de supervisor → mostrar "oculta"
+          if (
+            coluna === "senha" &&
+            !isSupervisor &&
+            String(linha.supervisor || "").toLowerCase().trim() === "supervisor"
+          ) {
+            return <td key={j}>oculta</td>;
+          }
 
-    // Caso contrário, mostrar senha com efeito de ocultar/revelar
-    return (
-      <td key={j} className="senha-ofuscada">
-        {String(valor)}
-      </td>
-    );
-  }
+          // Se for a coluna senha → aplicar efeito de ocultar/revelar
+          if (coluna === "senha") {
+            return (
+              <td key={j} className="senha-ofuscada">
+                {String(valor)}
+              </td>
+            );
+          }
 
-  // Colunas normais
-  return <td key={j}>{String(valor)}</td>;
-})
-}
+          // Outras colunas → mostrar valor normal
+          return <td key={j}>{String(valor)}</td>;
+        })}
       <td>
         <button onClick={() => editarLinha(linha)} className="btn-editar">Editar</button>
         <button onClick={() => apagarLinha(linha)} className="btn-apagar">Apagar</button>
@@ -478,6 +478,7 @@ async function removerSuplente() {
     </tr>
   ))}
 </tbody>
+
 
         </table>
       )}

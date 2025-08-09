@@ -171,20 +171,20 @@ td.senha-ofuscada {
   cursor: pointer;
   font-family: monospace;
   letter-spacing: 2px;
-  color: transparent; /* oculta texto real */
+  color: transparent; /* Esconde o texto real */
 }
 
 td.senha-ofuscada::after {
-  content: ""; /* pontinhos */
+  content: ""; /* Pontinhos no lugar da senha */
   color: #000;
 }
 
 td.senha-ofuscada:hover {
-  color: #000; /* revela senha real */
+  color: #000; /* Revela o texto real */
 }
 
 td.senha-ofuscada:hover::after {
-  content: none; /* remove pontinhos no hover */
+  content: none; /* Remove os pontinhos no hover */
 }
 
 .seletor-tabela select {
