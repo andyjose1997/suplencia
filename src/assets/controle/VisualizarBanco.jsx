@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './visualizarBanco.css';
+import './VisualizarBanco.css';
 import Formulario from "./formulario";
 import Repositorios from "./repositorios";
 export default function VisualizarBanco() {
