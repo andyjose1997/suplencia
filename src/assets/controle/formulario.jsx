@@ -80,7 +80,7 @@ export default function Formulario({ dados, setDados, onSalvar, onCancelar }) {
   value={dados.supervisor || ""}
   onChange={(e) => setDados({ ...dados, supervisor: e.target.value })}
 >
-  <option value=""> </option>
+  <option value="0"> </option>
   <option value="supervisor">supervisor</option>
 </select>
 
