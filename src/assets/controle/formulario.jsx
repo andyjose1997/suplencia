@@ -33,7 +33,7 @@ export default function Formulario({ dados, setDados, onSalvar, onCancelar }) {
     };
 
     try {
-      const res = await fetch(`${API_URL}/instrutores/${dados.id}`, {
+const res = await fetch(`${API_URL}/editar_instrutor/${dados.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dadosParaEnviar)
