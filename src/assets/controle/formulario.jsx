@@ -25,12 +25,21 @@ export default function Formulario({ dados, setDados, onSalvar, onCancelar }) {
   }, []);
 
   const handleSalvar = async () => {
-    const dadosParaEnviar = {
-      instrutor: dados.instrutor,
-      link_zoom: dados.link_zoom,
-      funcao: dados.funcao,
-      supervisor: dados.supervisor?.trim() || "supervisor"
-    };
+   const dadosParaEnviar = {
+  instrutor: dados.instrutor,
+  senha: dados.senha || "", // manter a senha existente
+  link_zoom: dados.link_zoom,
+  funcao: dados.funcao,
+  portugues: dados.portugues ?? false,
+  espanhol: dados.espanhol ?? false,
+  ingles: dados.ingles ?? false,
+  frances: dados.frances ?? false,
+  japones: dados.japones ?? false,
+  italiano: dados.italiano ?? false,
+  supervisor: dados.supervisor?.trim() || "supervisor"
+
+};
+
 
     try {
 const res = await fetch(`${API_URL}/editar_instrutor/${dados.id}`, {
