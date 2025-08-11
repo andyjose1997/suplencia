@@ -95,6 +95,7 @@ if (senha && senha.trim() !== "") {
 
         <input
           type="text"
+          placeholder="Nome do Instrutor, Ex. I. De oliveira"
           value={instrutor}
           onChange={(e) => setInstrutor(e.target.value)}
           required
