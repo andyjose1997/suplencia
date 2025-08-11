@@ -52,7 +52,7 @@ export default function Login({ aoLogar }) {
         <form onSubmit={fazerLogin}>
           <input
             type="text"
-            placeholder="Nome do Instrutor"
+            placeholder="Nome do Instrutor, Ex. I. De oliveira"
             value={instrutor}
             onChange={(e) => setInstrutor(e.target.value)}
             required
